@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+let App = ({ isPinging, ping }) => (
+  <div>
+    <h1>is pinging: {isPinging.toString()}</h1>
+    <button onClick={ping}>Start PING</button>
+  </div>
+);
 
-export default App;
+const mapStateToProps = ({ isPinging }) => ({ isPinging });
+const mapDispatchToProps = { ping: { type: 'PING' } };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

@@ -1,15 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-let App = ({ isPinging, ping }) => (
-  <div>
-    <h1>is pinging: {isPinging.toString()}</h1>
-    <button onClick={ping}>Start PING</button>
-  </div>
-);
+class App extends React.Component {
+  componentDidMount() {
+    this.props.pageLoad();
+  }
 
-const mapStateToProps = ({ isPinging }) => ({ isPinging });
-const mapDispatchToProps = { ping: { type: 'PING' } };
+  render() {
+    const { isPinging, ping, drag } = this.props;
+    return (
+      <div>
+        <h1>Redux Observable Demo</h1>
+        <h2>is pinging: {isPinging.toString()}</h2>
+        <button onClick={ping}>Start PING</button>
+        <h3>You dragged continuously for {drag.toString()} pixels</h3>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = ({ ping: { isPinging }, drag }) => ({ isPinging, drag });
+const mapDispatchToProps = {
+  ping: () => ({ type: 'PING' }),
+  pageLoad: () => ({ type: 'PAGELOAD' }),
+};
 
 export default connect(
   mapStateToProps,

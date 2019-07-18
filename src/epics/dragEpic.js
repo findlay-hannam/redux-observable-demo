@@ -11,8 +11,8 @@ const drag$ = down$.pipe(
 );
 
 function calculateDistance({ x: previousX, y: previousY, distance }, { x: currX, y: currY }) {
-  const stepSizeTakenX = currX - previousX || currX;
-  const stepSizeTakenY = currY - previousY || currY;
+  const stepSizeTakenX = currX - (previousX || currX);
+  const stepSizeTakenY = currY - (previousY || currY);
   const wholeStepTaken = Math.hypot(stepSizeTakenX, stepSizeTakenY);
   return { x: currX, y: currY, distance: distance + wholeStepTaken };
 }

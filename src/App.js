@@ -13,7 +13,7 @@ class App extends React.Component {
         <h1>Redux Observable Demo</h1>
         <h2>is pinging: {isPinging.toString()}</h2>
         <button onClick={ping}>Start PING</button>
-        <h3>You dragged continuously for {drag.toString()} pixels</h3>
+        <h3>You dragged for a total of {drag.toString()} pixels</h3>
       </div>
     )
   }

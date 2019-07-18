@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url('http://cur.cursors-4u.net/games/gam-16/gam1503.cur'), auto;
 }
 
 code {

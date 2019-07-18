@@ -1,6 +1,6 @@
 import { fromEvent } from 'rxjs';
-import { takeUntil, map, mergeMap, switchMap, scan, debounceTime } from 'rxjs/operators';
-import { ofType } from 'redux-observable';
+import { takeUntil, map, mapTo, mergeMap, switchMap, scan, debounceTime } from 'rxjs/operators';
+import { combineEpics, ofType } from 'redux-observable';
 
 const move$ = fromEvent(document, 'mousemove')
 const down$ = fromEvent(document, 'mousedown')
@@ -29,4 +29,13 @@ const dragEpic = action$ => action$.pipe(
   )
 );
 
-export default dragEpic;
+const mousedownEpic = action$ => action$.pipe(
+  ofType('PAGELOAD'),
+  switchMap(() =>
+    down$.pipe(
+      mapTo({ type: 'MOUSEDOWN' }),
+    ),
+  ),
+)
+
+export default combineEpics(dragEpic, mousedownEpic);
